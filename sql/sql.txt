@@ -1,0 +1,33 @@
+CREATE DATABASE `bienesraices_crud` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `vendedores` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  `apellido` varchar(45) DEFAULT NULL,
+  `telefono` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE `propiedades` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(45) DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL,
+  `imagen` varchar(200) DEFAULT NULL,
+  `descripcion` longtext,
+  `habitaciones` int DEFAULT NULL,
+  `wc` int DEFAULT NULL,
+  `estacionamiento` int DEFAULT NULL,
+  `creado` date DEFAULT NULL,
+  `vendedores_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_propiedades_vendedores_idx` (`vendedores_id`),
+  CONSTRAINT `fk_propiedades_vendedores` FOREIGN KEY (`vendedores_id`) REFERENCES `vendedores` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+
+CREATE TABLE usuarios (
+id int(1) NOT NULL AUTO_INCREMENT,
+email varchar(50) DEFAULT NULL,
+password char(60) DEFAULT NULL,
+PRIMARY KEY(`id`));
+
+
